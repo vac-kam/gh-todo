@@ -4,9 +4,10 @@
   "description": "GitHub todo dashboard — your PRs and issues across repos, in the terminal",
   "type": "module",
   "bin": {
-    "gh-todo": "./gh-todo.ts"
+    "gh-todo": "./launcher.js"
   },
   "files": [
+    "launcher.js",
     "gh-todo.ts"
   ],
   "engines": {

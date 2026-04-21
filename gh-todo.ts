@@ -67,7 +67,42 @@ const CONFIG_PATH = join(CONFIG_DIR, 'config.jsonc');
 
 // ── Default config ─────────────────────────────────────────────────────────
 
-const DEFAULT_CONFIG_JSONC = `[
+const DEFAULT_CONFIG_JSONC = `// gh-todo configuration
+// Each entry defines one section shown in the output.
+//
+// ── Fields ────────────────────────────────────────────────────────────────
+//
+//   "title"       Section heading displayed in the terminal.
+//
+//   "color"       ANSI color code for the heading. Common values:
+//                   "91" red        "92" green      "93" yellow
+//                   "94" blue       "95" magenta    "96" cyan
+//                   "97" white      "90" dark grey
+//                 Bold variants: prefix with "1;" e.g. "1;91"
+//
+//   "command"     The gh subcommand to run per repo (without -R or --json).
+//                 Use {me} as a placeholder for your GitHub login.
+//                 Must start with either "pr list" or "issue list".
+//
+//                 Examples:
+//                   "pr list --author {me}"
+//                   "pr list --search \\"review-requested:{me}\\""
+//                   "pr list --label bug"
+//                   "issue list --assignee {me}"
+//                   "issue list --label \\"help wanted\\""
+//
+//   "showAuthor"  (pr only)    Show the PR author next to the number.
+//                              Default: false
+//
+//   "noReviewer"  (pr only)    Only show PRs that have no reviewer assigned.
+//                              Default: false
+//
+//   "excludeSelf" (pr only)    Hide PRs authored by you.
+//                              Default: false
+//
+// ── Sections ──────────────────────────────────────────────────────────────
+
+[
   // Your open PRs that have no reviewer assigned yet
   {
     "title": "Your PRs with no reviewer assigned",
