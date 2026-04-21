@@ -1,0 +1,28 @@
+{
+  "name": "gh-todo",
+  "version": "1.0.0",
+  "description": "GitHub todo dashboard — your PRs and issues across repos, in the terminal",
+  "type": "module",
+  "bin": {
+    "gh-todo": "./gh-todo.ts"
+  },
+  "files": [
+    "gh-todo.ts"
+  ],
+  "scripts": {
+    "prepare": "chmod +x gh-todo.ts",
+    "postinstall": "test -f \"$HOME/.config/gh-todo/config.jsonc\" || node --experimental-strip-types --no-warnings ./gh-todo.ts --write-default-config || true"
+  },
+  "engines": {
+    "node": ">=22.6.0"
+  },
+  "keywords": [
+    "github",
+    "cli",
+    "todo",
+    "pr",
+    "issues",
+    "gh"
+  ],
+  "license": "MIT"
+}
