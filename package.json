@@ -9,10 +9,6 @@
   "files": [
     "gh-todo.ts"
   ],
-  "scripts": {
-    "prepare": "chmod +x gh-todo.ts",
-    "postinstall": "test -f \"$HOME/.config/gh-todo/config.jsonc\" || node --experimental-strip-types --no-warnings ./gh-todo.ts --write-default-config || true"
-  },
   "engines": {
     "node": ">=22.6.0"
   },

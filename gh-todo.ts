@@ -283,11 +283,7 @@ function runSection(section: SectionConfig, repos: string[], me: string): void {
 
 function loadConfig(): SectionConfig[] {
   if (!existsSync(CONFIG_PATH)) {
-    process.stderr.write(
-      `\x1b[1;33mNo config found at ${CONFIG_PATH}\n` +
-      `Run \x1b[1mgh-todo --write-default-config\x1b[0;33m to create one.\x1b[0m\n\n`,
-    );
-    process.exit(1);
+    writeDefaultConfig();
   }
   try {
     return parseJsonc(readFileSync(CONFIG_PATH, 'utf8')) as SectionConfig[];
@@ -297,10 +293,11 @@ function loadConfig(): SectionConfig[] {
   }
 }
 
-function writeDefaultConfig(): void {
+function writeDefaultConfig(explicit = false): void {
   mkdirSync(CONFIG_DIR, { recursive: true });
   writeFileSync(CONFIG_PATH, DEFAULT_CONFIG_JSONC, 'utf8');
-  process.stdout.write(
+  const out = explicit ? process.stdout : process.stderr;
+  out.write(
     `\x1b[1;32mDefault config written to ${CONFIG_PATH}\x1b[0m\n` +
     `Edit it to customise your sections.\n`,
   );
@@ -365,7 +362,7 @@ function main(): void {
   }
 
   if (doWriteConfig) {
-    writeDefaultConfig();
+    writeDefaultConfig(true);
     process.exit(0);
   }
 
